@@ -9,6 +9,7 @@ import { PayInCard } from "../components/purse/PayInCard";
 import { PaidList } from "../components/purse/PaidList";
 import { PaymentHistory } from "../components/purse/PaymentHistory";
 import { SpendingRequests } from "../components/purse/SpendingRequests";
+import { SharePurseDialog } from "../components/purse/SharePurseDialog";
 import { usePurse } from "../lib/usePurse";
 import { closesIn } from "../lib/demoPurse";
 
@@ -38,7 +39,8 @@ export default function PursePage() {
             </Badge>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <SharePurseDialog purse={purse} />
           <Button variant="ghost" size="sm" onClick={resetPurse}>
             Reset demo
           </Button>
