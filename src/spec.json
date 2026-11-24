@@ -1,0 +1,343 @@
+{
+  "summary": "Class Purse is a transparent class fund for university students on Celo: a class rep opens a purse with a name, a G$ target and a deadline, members pay in G$, and everyone sees who paid and how much. This first milestone is a fully clickable local preview with clearly labelled sample data: no contracts, no wallet, no real G$ moves.",
+  "direction": "Midnight student ledger: deep navy surfaces with one gold accent, Space Grotesk headings with tight tracking and DM Sans body, small uppercase spaced labels, big tabular numbers, a thick gold progress bar as the page's hero, soft borders and generous vertical space, a tilted demo purse card on the home hero, and one stacked column on a phone.",
+  "pages": [
+    {
+      "route": "/",
+      "purpose": "Say in five words what Class Purse is, show the demo purse as the product, and send people into it.",
+      "elements": [
+        "Demo banner at the top: \"Demo milestone: this preview runs on sample data in this browser tab. No G$ moves and nothing is saved yet.\"",
+        "Hero, split on desktop: left an eyebrow chip \"G$ class fund on Celo\", h1 \"Class money everyone can see.\", paragraph \"A class rep opens a purse with a target and",
+        "Right of the hero: a tilted demo purse card built from the real components: \"CHM 302 Lab Fund\", the gold progress bar, \"16,000 G$\" with \"of 40,000 G$ target\", c",
+        "Section \"How the purse works\": three cards with lucide icon tiles (Users, Coins, ShieldCheck): \"1. The rep opens the purse\" (name, target, deadline, fixed share",
+        "A contrasting band explaining the rule with an example line: \"8 paid members need 5 approvals.\" plus a Note that payouts go straight to the rep's own wallet.",
+        "Footer with links to Purse, Start a purse, How it works, and the line \"Class Purse preview: sample data only.\""
+      ]
+    },
+    {
+      "route": "/purse",
+      "purpose": "The working screen: progress, who has paid, payment history, and spending requests with approvals.",
+      "elements": [
+        "Page header: eyebrow \"Demo purse\", h1 \"CHM 302 Lab Fund\", badges \"Rep: Chidi Okeke\" and \"Closes in 12 days\", the demo banner, and a RefreshButton is not needed ",
+        "Progress card: label \"Collected\", the big number \"16,000 G$\" in display type with \"of 40,000 G$ target\" beside it, a thick rounded progress bar (role=progressba",
+        "Pay in card: heading \"Pay in\", one Label \"Amount to pay in (G$)\" + numeric Input prefilled \"2000\", helper \"Your share is 2,000 G$. Paying more is welcome.\", sma",
+        "Members who paid card (heading \"Who has paid\"): rows of Avatar + name + right-aligned amount with tabular-nums, highlighted bg-accent/5 for the demo visitor Ada",
+        "Payment history card (heading \"Payment history\"): rows name + \"paid\" + amount + relative time (\"2 days ago\"); the eight seeded payments, newest first. A payment",
+        "Spending requests card (heading \"Spending requests\"), with a Tabs control in its header for the demo role: \"Member\" and \"Class rep\". Every request shows the rea",
+        "Approving as Ada (who has paid) turns request A into 5 of 8 approved, Badge success \"Ready for release\", a success Notice \"Approval recorded\", and the row line ",
+        "In Class rep view the card header shows Button \"New spending request\" (gold accent) instead of the member note; it opens a Dialog titled \"New spending request\" ",
+        "Empty states: after creating a brand new purse the paid list, history and requests show their empty sentences: \"No payments yet. Share the purse with your class"
+      ]
+    },
+    {
+      "route": "/create",
+      "purpose": "The rep's form for opening a purse: name, target, deadline and fixed share, with demo labelling and validation.",
+      "elements": [
+        "Eyebrow \"New purse\", h1 \"Open a purse for your class\", paragraph \"You set the target and the deadline. Members pay in G$, and the purse stays read-only for spen",
+        "Card with a short form (one column, max-w-md): Label \"Your name (class rep)\" Input placeholder \"Chidi Okeke\"; Label \"Purse name\" Input placeholder \"CHM 302 Lab ",
+        "Validation on submit: \"Give the purse a name.\", \"Enter a G$ target above 0.\", \"Pick a deadline in the future.\", \"Enter a share per member above 0.\", each as tex",
+        "Button \"Create purse\" (gold accent, full width on a phone). On success the demo purse is replaced by the new one (collected 0, no payments, no requests, you as ",
+        "Small print under the form: \"Demo only: the purse lives in this browser tab until real G$ payments are added in the next milestone.\""
+      ]
+    },
+    {
+      "route": "/how-it-works",
+      "purpose": "Explain the rules plainly: who can do what, the majority rule, where the money goes, and what is demo for now.",
+      "elements": [
+        "h1 \"How Class Purse works\", intro paragraph max-w-prose.",
+        "Two-column list \"The class rep\" and \"Members\": rep opens the purse and writes spending requests; members pay the fixed share or more, can approve any open reque",
+        "Section \"The majority rule\" with the sentence \"A request is released only after more than half of the members who paid have approved it.\" and the worked example",
+        "Section \"Where the money goes\": payouts go straight to the rep's own wallet after approval; the contract holds the purse between payments; released amounts leav",
+        "Notice tone=\"info\" titled \"This preview is local\": \"Payments, approvals and new purses are sample interactions in this browser tab. Real G$ payments, wallet sig",
+        "FAQ Accordion (single) with four items: \"Do I need a wallet to try it?\", \"What if I pay more than my share?\", \"Can the rep spend the purse alone?\", \"What happen"
+      ]
+    },
+    {
+      "route": "*",
+      "purpose": "Friendly fallback for unknown routes.",
+      "elements": [
+        "\"This page is not part of the purse.\" with a Button linking back to /."
+      ]
+    }
+  ],
+  "contracts": [],
+  "data": [],
+  "acceptance": [
+    {
+      "name": "Home explains Class Purse and links into the demo",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "expect": {
+            "text": "Class money everyone can see"
+          }
+        },
+        {
+          "expect": {
+            "text": "No G$ moves and nothing is saved yet"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Open the demo purse"
+          }
+        },
+        {
+          "expect": {
+            "route": "/purse"
+          }
+        },
+        {
+          "expect": {
+            "text": "CHM 302 Lab Fund"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purse page shows progress, totals and who has paid",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/purse"
+        },
+        {
+          "expect": {
+            "text": "16,000 G$"
+          }
+        },
+        {
+          "expect": {
+            "text": "of 40,000 G$ target"
+          }
+        },
+        {
+          "expect": {
+            "text": "8 members paid"
+          }
+        },
+        {
+          "expect": {
+            "text": "Fatima Bello"
+          }
+        },
+        {
+          "expect": {
+            "text": "3,000 G$"
+          }
+        },
+        {
+          "expect": {
+            "text": "Payment history"
+          }
+        }
+      ]
+    },
+    {
+      "name": "A member pays in and the total moves",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/purse"
+        },
+        {
+          "fill": {
+            "label": "Amount to pay in (G$)"
+          },
+          "value": "2500"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Add my payment"
+          }
+        },
+        {
+          "expect": {
+            "text": "Payment recorded"
+          }
+        },
+        {
+          "expect": {
+            "text": "18,500 G$"
+          }
+        },
+        {
+          "expect": {
+            "text": "Your total: 4,500 G$"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Approving a spending request reaches the majority",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/purse"
+        },
+        {
+          "expect": {
+            "text": "1 more approval needed"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Approve"
+          }
+        },
+        {
+          "expect": {
+            "text": "5 of 8 approved"
+          }
+        },
+        {
+          "expect": {
+            "text": "Ready for release"
+          }
+        },
+        {
+          "expect": {
+            "text": "You approved this request."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Only the rep starts a request, and a new request joins the list",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/purse"
+        },
+        {
+          "expect": {
+            "text": "Only the class rep can start a spending request"
+          }
+        },
+        {
+          "click": {
+            "text": "Class rep"
+          }
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "New spending request"
+          }
+        },
+        {
+          "fill": {
+            "label": "Reason"
+          },
+          "value": "Bus fare to the chemistry lab"
+        },
+        {
+          "fill": {
+            "label": "Amount (G$)"
+          },
+          "value": "1500"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Create request"
+          }
+        },
+        {
+          "expect": {
+            "text": "Bus fare to the chemistry lab"
+          }
+        },
+        {
+          "expect": {
+            "text": "0 of 8 approved"
+          }
+        }
+      ]
+    },
+    {
+      "name": "The create form asks for what is missing",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/create"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Create purse"
+          }
+        },
+        {
+          "expect": {
+            "text": "Give the purse a name."
+          }
+        },
+        {
+          "fill": {
+            "label": "Purse name"
+          },
+          "value": "MTH 201 Study Fund"
+        },
+        {
+          "click": {
+            "role": "button",
+            "name": "Create purse"
+          }
+        },
+        {
+          "expect": {
+            "route": "/purse"
+          }
+        },
+        {
+          "expect": {
+            "text": "MTH 201 Study Fund"
+          }
+        },
+        {
+          "expect": {
+            "text": "No payments yet"
+          }
+        }
+      ]
+    },
+    {
+      "name": "How it works explains the majority rule",
+      "needs": "local",
+      "steps": [
+        {
+          "goto": "/how-it-works"
+        },
+        {
+          "expect": {
+            "text": "more than half"
+          }
+        },
+        {
+          "expect": {
+            "text": "8 paid members need 5 approvals."
+          }
+        },
+        {
+          "expect": {
+            "text": "This preview is local"
+          }
+        }
+      ]
+    }
+  ],
+  "outOfScope": [
+    "Smart contracts and deploy manifest (next milestone)",
+    "Real G$ payments, wallet connection, approvals and transaction signing",
+    "Saved data between visits (the demo purse resets on reload)",
+    "Several purses at once or a purse directory",
+    "Deadline enforcement and refunds"
+  ]
+}
